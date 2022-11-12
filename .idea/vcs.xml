@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Ass6" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/HCMUS_MobileDev_Ass2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/HCMUS_MobileDev_Ass3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/PicBox" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project/ThreadDemo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/StudentManager" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Temp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sample/LeafPic" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sample/Simple-Gallery" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sample/lame_photo_viewer" vcs="Git" />
+  </component>
+</project>
