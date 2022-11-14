@@ -4,54 +4,54 @@
     android:layout_height="wrap_content"
     android:background="@drawable/border"
     android:orientation="vertical">
+
     <TextView
         android:id="@+id/txt_title"
-        android:padding="12dp"
         android:layout_width="match_parent"
-        android:textSize="16dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:background="@drawable/border"
-        />
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+
     <TextView
         android:id="@+id/txt_description"
-        android:padding="12dp"
-        android:textSize="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
+        android:padding="12dp"
         android:textColor="@color/black"
-        />
+        android:textSize="16dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/btn_more"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/more"
             android:background="@drawable/border"
             android:gravity="center"
             android:padding="8dp"
-            android:textStyle="bold"
+            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="16sp"
-            />
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/btn_close"
-            android:background="@drawable/border"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/close"
+            android:background="@drawable/border"
             android:gravity="center"
             android:padding="8dp"
-            android:textStyle="bold"
+            android:text="@string/close"
             android:textColor="@color/black"
             android:textSize="16sp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

@@ -3,4 +3,7 @@
     <string name="news_app">NEWS APP</string>
     <string name="more">MORE</string>
     <string name="close">CLOSE</string>
+    <string name="descriptions">descriptions</string>
+    <string name="progress_msg">Please wait! Reading RSS feed ...</string>
+    <string name="empty_txt">Empty feeds</string>
 </resources>

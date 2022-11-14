@@ -2,34 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical"
     android:padding="5dp">
 
     <TextView
         android:id="@+id/txtTitle"
-        android:text="@string/news_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="20sp"
         android:layout_marginBottom="32dp"
         android:padding="8dp"
-        />
+        android:text="@string/news_app"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <GridView
-        android:id="@+id/myGridView"
-        android:padding="8dp"
+        android:id="@+id/gridview_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2"
-        android:verticalSpacing="16dp"
-        android:horizontalSpacing="16dp"
-        android:scrollX="0px"
         android:fadeScrollbars="false"
+        android:horizontalSpacing="16dp"
+        android:numColumns="2"
+        android:padding="8dp"
+        android:scrollX="0px"
         android:scrollY="0px"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbarThumbVertical="@color/blue"
         android:scrollbarSize="16dp"
         android:scrollbarStyle="outsideInset"
-        android:scrollbars="vertical"/>
+        android:scrollbarThumbVertical="@color/blue"
+        android:scrollbars="vertical"
+        android:verticalSpacing="16dp" />
 </LinearLayout>
