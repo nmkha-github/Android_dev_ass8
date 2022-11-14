@@ -9,9 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -23,19 +28,25 @@ public class ShowHeadlines extends Activity {
     ListView myListView;
     String urlAddress = "", urlCaption = "";
     SingleItem selectedNewsItem;
-
+    TextView title;
+    ImageView logo;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.list_items_activity);
         myListView = (ListView) this.findViewById(R.id.myListView);
 // find out which intent is calling us & grab data bundle holding selected url & caption sent to us
         Intent callingIntent = getIntent();
         Bundle myBundle = callingIntent.getExtras();
         urlAddress = myBundle.getString("urlAddress");
-        urlCaption = myBundle.getString("urlCaption");
+        urlCaption = myBundle.getString("title");
+        title=(TextView)findViewById(R.id.txtTitle);
+        title.setText(myBundle.getString("title"));
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
+        logo=(ImageView)findViewById(R.id.logo);
+        logo.setBackgroundResource(myBundle.getInt("image"));
 // update app’s top ‘TitleBar’ (eg. ‘NPR - Business Wed April 09, 2014’)
-        this.setTitle("NPR – " + urlCaption + " \t" + MainActivity.niceDate());
+        this.setTitle("NPR – " + urlCaption + " \t" + ShowChannels.niceDate());
         myListView = (ListView) this.findViewById(R.id.myListView);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> av, View v, int index, long id) {
@@ -60,8 +71,7 @@ public class ShowHeadlines extends Activity {
 //CAUTION: sometimes TITLE and DESCRIPTION include HTML markers
             final Uri storyLink = Uri.parse(selectedStoryItem.getLink());
             AlertDialog.Builder myBuilder = new AlertDialog.Builder(this);
-            myBuilder.setIcon(R.drawable.logo_npr)
-                    .setTitle(Html.fromHtml(urlCaption))
+            myBuilder.setTitle(Html.fromHtml(urlCaption))
                     .setMessage(title + "\n\n" + Html.fromHtml(description) + "\n")
 .setPositiveButton("Close", null)
                     .setNegativeButton("More", new DialogInterface.OnClickListener() {

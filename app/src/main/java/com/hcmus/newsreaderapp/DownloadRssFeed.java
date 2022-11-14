@@ -1,9 +1,12 @@
 package com.hcmus.newsreaderapp;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import org.w3c.dom.DOMException;
@@ -40,8 +43,10 @@ public class DownloadRssFeed extends AsyncTask<String, Void, ArrayList<SingleIte
     protected void onPostExecute(ArrayList<SingleItem> result) {
         super.onPostExecute(result);
         callerContext.newsList = result;
+        LayoutInflater inflater = ((Activity) callerContext).getLayoutInflater();
 // the ‘result’ list contains headlines for selected news category
 // use custom row layout (small font, blue background on state-pressed)
+        View row = inflater.inflate(R.layout.my_simple_list_item_1, null);
         int layoutID = R.layout.my_simple_list_item_1;
         ArrayAdapter<SingleItem> adapterNews = new ArrayAdapter<SingleItem>(callerContext, layoutID, result);
         callerContext.myListView.setAdapter(adapterNews);

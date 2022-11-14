@@ -1,38 +1,34 @@
 package com.hcmus.newsreaderapp;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
     ArrayAdapter<String> adapterMainSubjects;
-    ListView myMainListView;
+    GridView myMainListView;
     Context context;
-    SingleItem selectedNewsItem;
-
-    // hard-coding main NEWS categories (TODO: use a resource file)
-    String[][] myUrlCaptionMenu = {
-            {"https://feeds.npr.org/510289/podcast.xml", "Business"},
-            {"https://feeds.npr.org/344098539/podcast.xml", "Comedy"},
-            {"https://feeds.npr.org/510308/podcast.xml", "Science"},
-            {"https://feeds.npr.org/510298/podcast.xml", "Technology"},
-            {"https://feeds.npr.org/510306/podcast.xml", "Music"},
-            {"https://feeds.npr.org/510354/podcast.xml", "Kid & family"},
-            {"https://feeds.npr.org/510309/podcast.xml", "Society & culture"}
-    };
-
-    String[] myUrlCaption = new String[myUrlCaptionMenu.length];
-    String[] myUrlAddress = new String[myUrlCaptionMenu.length];
-
+    String[] myUrlCaption={"TUỔI TRẺ","VNEXPRESS","THANH NIÊN","NGƯỜI LAO ĐỘNG"};
+    String[] myURL={"https://tuoitre.vn/rss.htm","https://vnexpress.net/rss","https://thanhnien.vn/rss.html","https://nld.com.vn/rss.htm"};
+    int[] imageSource={R.drawable.tuoitre,R.drawable.vnexpress,R.drawable.thanhnien,R.drawable.nguoilaodong};
     public static String niceDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("EE MMM d, yyyy",
                 Locale.US);
@@ -43,29 +39,24 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        for (int i = 0; i < myUrlAddress.length; i++) {
-            myUrlAddress[i] = myUrlCaptionMenu[i][0];
-            myUrlCaption[i] = myUrlCaptionMenu[i][1];
-        }
         context = getApplicationContext();
         this.setTitle("NPR Headline News\n" + niceDate());
 // user will tap on a ListView’s row to request category’s headlines
-        myMainListView = (ListView) this.findViewById(R.id.myListView);
+        myMainListView = (GridView) this.findViewById(R.id.myGridView);
         myMainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> _av, View _v, int _index, long _id) {
-                String urlAddress = myUrlAddress[_index], urlCaption = myUrlCaption[_index];
-//create an Intent to talk to activity: ShowHeadlines
-                Intent callShowHeadlines = new Intent(MainActivity.this, ShowHeadlines.class);
-//prepare a Bundle and add the input arguments: url & caption
+                String urlAddress = "";
+                Intent callShowHeadlines = new Intent(MainActivity.this, ShowChannels.class);
                 Bundle myData = new Bundle();
-                myData.putString("urlAddress", urlAddress);
-                myData.putString("urlCaption", urlCaption);
+                myData.putString("url", myURL[_index]);
+                myData.putString("title","CHANNELS IN "+myUrlCaption[_index]);
+                myData.putInt("image",imageSource[_index]);
                 callShowHeadlines.putExtras(myData);
                 startActivity(callShowHeadlines);
             }
         });
 // fill up the Main-GUI’s ListView with main news categories
-        adapterMainSubjects = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myUrlCaption);
+        adapterMainSubjects = new ArrayAdapter<String>(this, R.layout.my_simple_list_item_2, myUrlCaption);
         myMainListView.setAdapter(adapterMainSubjects);
     }//onCreate
 }
