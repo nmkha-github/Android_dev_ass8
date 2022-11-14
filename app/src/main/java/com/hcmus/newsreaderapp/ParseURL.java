@@ -40,9 +40,9 @@ public class ParseURL extends AsyncTask<String,Void, ArrayList<ArrayList<String>
             int i=0;
             for(Element hyperlink:hyperlinks){
                 String url=hyperlink.attr("href");
-                if(url.contains(".rss")){
+                if(url.contains(".rss")||url.contains(".xml")){
                     String title=hyperlink.text();
-                    if(title.trim().isEmpty()||title.contains("Trang chủ")||title.contains("Home")){
+                    if(title.trim().isEmpty()||title.contains("Trang chủ")||title.contains("Home")||title.contains("USNEWS")){
                         continue;
                     }
                     title=title.replace("RSS","");

@@ -26,9 +26,9 @@ public class MainActivity extends Activity{
     ArrayAdapter<String> adapterMainSubjects;
     GridView myMainListView;
     Context context;
-    String[] myUrlCaption={"TUỔI TRẺ","VNEXPRESS","THANH NIÊN","NGƯỜI LAO ĐỘNG"};
-    String[] myURL={"https://tuoitre.vn/rss.htm","https://vnexpress.net/rss","https://thanhnien.vn/rss.html","https://nld.com.vn/rss.htm"};
-    int[] imageSource={R.drawable.tuoitre,R.drawable.vnexpress,R.drawable.thanhnien,R.drawable.nguoilaodong};
+    String[] myUrlCaption={"TUỔI TRẺ","VNEXPRESS","THANH NIÊN","NGƯỜI LAO ĐỘNG","THE NEW YORK TIMES","BUZZFEED"};
+    String[] myURL={"https://tuoitre.vn/rss.htm","https://vnexpress.net/rss","https://thanhnien.vn/rss.html","https://nld.com.vn/rss.htm","https://www.nytimes.com/rss","https://www.buzzfeed.com/rss"};
+    int[] imageSource={R.drawable.tuoitre,R.drawable.vnexpress,R.drawable.thanhnien,R.drawable.nguoilaodong,R.drawable.thenewyorktimes,R.drawable.buzzfeed};
     public static String niceDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("EE MMM d, yyyy",
                 Locale.US);

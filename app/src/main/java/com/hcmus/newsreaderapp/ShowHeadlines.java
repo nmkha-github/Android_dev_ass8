@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -71,16 +74,48 @@ public class ShowHeadlines extends Activity {
 //CAUTION: sometimes TITLE and DESCRIPTION include HTML markers
             final Uri storyLink = Uri.parse(selectedStoryItem.getLink());
             AlertDialog.Builder myBuilder = new AlertDialog.Builder(this);
-            myBuilder.setTitle(Html.fromHtml(urlCaption))
-                    .setMessage(title + "\n\n" + Html.fromHtml(description) + "\n")
-.setPositiveButton("Close", null)
-                    .setNegativeButton("More", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichOne) {
-                            Intent browser = new Intent(Intent.ACTION_VIEW, storyLink);
-                            startActivity(browser);
-                        }
-                    }) //setNegativeButton
-                    .show();
+//            myBuilder.setTitle(Html.fromHtml(urlCaption))
+//                    .setMessage(title + "\n\n" + Html.fromHtml(description) + "\n")
+//.setPositiveButton("Close", null)
+//                    .setNegativeButton("More", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int whichOne) {
+//                            Intent browser = new Intent(Intent.ACTION_VIEW, storyLink);
+//                            startActivity(browser);
+//                        }
+//                    }) //setNegativeButton
+            LayoutInflater inflater	= this.getLayoutInflater();
+            View dialogView=inflater.inflate(R.layout.custom_dialog,(ViewGroup) findViewById(R.layout.list_items_activity));
+            TextView txtTitle=(TextView)dialogView.findViewById(R.id.txt_title);
+            TextView txtDescription=(TextView) dialogView.findViewById(R.id.txt_description);
+            Button btnMore=(Button)dialogView.findViewById(R.id.btn_more);
+            Button btnClose=(Button)dialogView.findViewById(R.id.btn_close);
+            txtTitle.setText(Html.fromHtml(urlCaption));
+            String showDescription=title + "\n\n" + Html.fromHtml(description);
+            if(showDescription.length()>500){
+                showDescription=showDescription.substring(0,500);
+                showDescription=showDescription+"..."+"\n";
+            }
+            else{
+                showDescription+="\n";
+            }
+            txtDescription.setText(showDescription);
+            myBuilder.setView(dialogView);
+            AlertDialog dialogShow=myBuilder.create();
+            dialogShow.show();
+            btnMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent browser = new Intent(Intent.ACTION_VIEW, storyLink);
+                    startActivity(browser);
+                }
+            });
+            btnClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogShow.dismiss();
+                }
+            });
+
         } catch (Exception e) {
             Log.e("Error DialogBox", e.getMessage());
         }
